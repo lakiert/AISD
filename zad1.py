@@ -76,17 +76,52 @@
 
 
 # zad7
+#
+# lista1 = [1,2,3,4,5]
+# lista2 = ['ola','ala','ela','ula']
+#
+# def funkcja7(lista):
+#     return tuple(lista)
+#
+# print(funkcja7(lista1))
+# print(funkcja7(lista2))
 
 
+# zad8
+# lista=[]
+# print('podaj trzy imiona')
+# def funkcja8(lista):
+#     for i in range(3):
+#         lista.append(input('podaj imie:'))
+#
+#     return tuple(lista)
+#
+# print(funkcja8(lista))
 
 
+# zad9
+
+# tydzien=['poniedzialek','wtorek','sroda','czwartek','piatek','sobota','niedziela']
+# liczba=1
+# def funkcja9(liczba):
+#     liczba = int(input('podaj numer dznia tygodnia:'))
+#     return tydzien[liczba-1]
+#
+# print(funkcja9(liczba))
 
 
+# zad10
 
+# # text2=''.join(reversed(text))
+# # text3=text[::-1]
 
-
-
-
-
+# napis=input('podaj slowo:')
+# def funkcja10(napis):
+#     if napis == napis[::-1]:
+#         return True
+#     else:
+#         return False
+#
+# print(funkcja10(napis))
 
 
