@@ -25,6 +25,26 @@ class LinkedList():
         current.next = new_node
 
 
+    def node(self, at: int) -> Node:
+        node = self.head
+        for x in range(at):
+            node = node.next
+        return node.value
+
+
+    # def insert(self, value: Any, after: Node) -> None:
+    #     node = Node(value)
+    #     node.next = after.next
+    #     after.next = node
+
+    # def pop(self) -> None:
+    #     current = self.head
+    #     while(current.next):
+    #         current = current.next
+    #     current.next = None
+
+
+
 
     def print(self):
         print_ = self.head
@@ -36,12 +56,29 @@ class LinkedList():
         return " -> ".join(prints_)
 
 
+    def __len__(self):
+        node = self.head
+        licznik = 0
+        while(node.next):
+            node = node.next
+            licznik += 1
+        return licznik+1
+
+
+
 lista1 = LinkedList()
-lista1.head = Node('monday')
-lista1.push_('tuesday')
-lista1.push_('apple')
-lista1.push_('first')
-lista1.append('last')
+lista1.head = Node('jeden')
+lista1.push_('zero')
+lista1.append('dwa')
+lista1.append('trzy')
+lista1.append('cztery')
+# lista1.insert('tak', lista1.node(1))
+print("dlugosc listy = ", lista1.__len__())
 print(lista1.print())
+
+print(lista1.node(3))
+print(lista1.node(0))
+
+
 
 
