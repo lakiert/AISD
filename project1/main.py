@@ -54,15 +54,14 @@ class LinkedList():
         node.next = after.next
         after.next = node
 
-
-    # def pop(self) -> Any:
-    #     current = self.head
-    #     while(current.next != None):
-    #         current = current.next
-    #     current2 = current.next
-    #     current.next = None
-
-
+    def pop(self) -> Any:
+        current = self.head
+        current2 = self.head
+        while (current.next != self.tail):
+            current = current.next
+        while (current2.next != current):
+            current2 = current2.next
+        current2.next = None
 
 # remove_last
 
@@ -74,15 +73,25 @@ class LinkedList():
 
 
 
-lista1 = LinkedList()
-lista1.head = Node('jeden')
-lista1.push('zero')
-lista1.append('dwa')
-lista1.append('trzy')
-lista1.insert(10, lista1.node(3))
-print("dlugosc listy = ", lista1.__len__())
-print(lista1.print())
+# lista1 = LinkedList()
+# lista1.head = Node('jeden')
+# lista1.push('zero')
+# lista1.append('dwa')
+# lista1.append('trzy')
+# lista1.insert(10, lista1.node(3))
+# print("dlugosc listy = ", lista1.__len__())
+# print(lista1.print())
 
 
-# print(lista1.node(3))
-# print(lista1.node(0))
+list_ = LinkedList()
+assert list_.head == None
+list_.push(1)
+list_.push(0)
+# assert str(list_) == "0"
+list_.append(9)
+list_.append(10)
+middle_node = list_.node(at=1)
+list_.insert(5, after=middle_node)
+list_.print()
+list_.pop()
+list_.print()
