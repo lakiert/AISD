@@ -54,16 +54,18 @@ class LinkedList():
         node.next = after.next
         after.next = node
 
-    def pop(self) -> Any:
+    def remove_last(self) -> Any:
         current = self.head
         current2 = self.head
         while (current.next != self.tail):
             current = current.next
         while (current2.next != current):
             current2 = current2.next
+        temp = current
         current2.next = None
+        return temp
 
-# remove_last
+# pop
 
 
 #remove
@@ -93,5 +95,5 @@ list_.append(10)
 middle_node = list_.node(at=1)
 list_.insert(5, after=middle_node)
 list_.print()
-list_.pop()
+print(list_.remove_last())
 list_.print()
