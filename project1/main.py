@@ -65,6 +65,12 @@ class LinkedList():
         current2.next = None
         return temp
 
+    def pop(self) -> Any:
+        current = self.head
+        current2 = current.next
+        self.head = current2
+        
+
 # pop
 
 
@@ -96,4 +102,6 @@ middle_node = list_.node(at=1)
 list_.insert(5, after=middle_node)
 list_.print()
 print(list_.remove_last())
+list_.print()
+list_.pop()
 list_.print()
