@@ -67,41 +67,40 @@ class LinkedList():
 
     def pop(self) -> Any:
         current = self.head
+        temp = current
         current2 = current.next
         self.head = current2
-        
+        return temp
 
-# pop
-
-
-#remove
-
-
+    def remove(self, after: Node) -> Any:
+        node = after.next
+        node2 = node.next
+        after.next = node2
 
 
 
 
-# lista1 = LinkedList()
-# lista1.head = Node('jeden')
-# lista1.push('zero')
-# lista1.append('dwa')
-# lista1.append('trzy')
-# lista1.insert(10, lista1.node(3))
-# print("dlugosc listy = ", lista1.__len__())
-# print(lista1.print())
-
-
-list_ = LinkedList()
-assert list_.head == None
-list_.push(1)
-list_.push(0)
-# assert str(list_) == "0"
-list_.append(9)
-list_.append(10)
-middle_node = list_.node(at=1)
-list_.insert(5, after=middle_node)
-list_.print()
-print(list_.remove_last())
-list_.print()
-list_.pop()
-list_.print()
+lista = LinkedList()
+print("lista: ")
+lista.append(1)
+lista.append(2)
+lista.append(3)
+lista.append(4)
+lista.append(5)
+lista.append(6)
+lista.append(7)
+lista.print()
+print("\n0 na poczatku: ")
+lista.push(0)
+lista.print()
+print("\nusuniecie ostatniego: ")
+lista.remove_last()
+lista.print()
+print("\nusuniecie pierwszego: ")
+lista.pop()
+lista.print()
+print("\nusuniecie wezla nr 3: ")
+lista.remove(after=lista.node(2))
+lista.print()
+print("\ndlugosc listy: ")
+print(lista.__len__())
