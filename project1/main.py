@@ -8,8 +8,9 @@ class Node:
 class LinkedList():
     def __init__(self):       #podczas tworzenia listy: (lista sklada sie z wezlow)
         self.head = None    #tworzy obiekt node i nazwie go head
+        self.tail = None    #tworzy obiekt node i nazwie go tail
 
-    def push_(self, value:Any) -> None:
+    def push(self, value:Any) -> None:
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
@@ -24,61 +25,64 @@ class LinkedList():
             current = current.next
         current.next = new_node
 
-
     def node(self, at: int) -> Node:
         node = self.head
         for x in range(at):
             node = node.next
-        return node.value
-
-
-    # def insert(self, value: Any, after: Node) -> None:
-    #     node = Node(value)
-    #     node.next = after.next
-    #     after.next = node
-
-    # def pop(self) -> None:
-    #     current = self.head
-    #     while(current.next):
-    #         current = current.next
-    #     current.next = None
-
-
-
-
-    def print(self):
-        print_ = self.head
-        prints_ = []
-        while print_ != None:
-            prints_.append(print_.value)
-            print_ = print_.next
-        prints_.append("None")
-        return " -> ".join(prints_)
-
+        return node
 
     def __len__(self):
         node = self.head
         licznik = 0
-        while(node.next):
+        while (node.next):
             node = node.next
             licznik += 1
-        return licznik+1
+        return licznik + 1
+
+    def print(self):
+        element = self.head
+        data = element.value
+        text = str(data)
+        while (element.next != None):
+            element = element.next
+            data = element.value
+            text += " -> " + str(data)
+        print(text)
+
+    def insert(self, value: Any, after: Node) -> None:
+        node = Node(value)
+        node.next = after.next
+        after.next = node
+
+
+    # def pop(self) -> Any:
+    #     current = self.head
+    #     while(current.next != None):
+    #         current = current.next
+    #     current2 = current.next
+    #     current.next = None
+
+
+
+# remove_last
+
+
+#remove
+
+
+
 
 
 
 lista1 = LinkedList()
 lista1.head = Node('jeden')
-lista1.push_('zero')
+lista1.push('zero')
 lista1.append('dwa')
 lista1.append('trzy')
-lista1.append('cztery')
-# lista1.insert('tak', lista1.node(1))
+lista1.insert(10, lista1.node(3))
 print("dlugosc listy = ", lista1.__len__())
 print(lista1.print())
 
-print(lista1.node(3))
-print(lista1.node(0))
 
-
-
-
+# print(lista1.node(3))
+# print(lista1.node(0))
