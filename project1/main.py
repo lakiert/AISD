@@ -215,7 +215,7 @@ class Queue():
         while (element.next != None):
             element = element.next
             data = element.value
-            text += " -> " + str(data)
+            text += ", " + str(data)
         print(text)
 
     def dequeue(self) -> Any:
