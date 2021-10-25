@@ -44,19 +44,6 @@ class LinkedList():
             licznik += 1
         return licznik + 1
 
-    def print(self):
-        element = self.head
-        if (element == None):
-            print("empty")
-            return
-        data = element.value
-        text = str(data)
-        while (element.next != None):
-            element = element.next
-            data = element.value
-            text += " -> " + str(data)
-        print(text)
-
     def insert(self, value: Any, after: Node) -> None:
         node = Node(value)
         node.next = after.next
@@ -81,14 +68,12 @@ class LinkedList():
         return temp
 
     def pop(self) -> Any:
-        current = self.head
         if (self.head == None):
             print("empty")
             return
-        temp = current
-        current2 = current.next
-        self.head = current2
-        return temp
+        current = self.head
+        self.head = current.next
+        return current.value
 
     def remove(self, after: Node) -> Any:
         if (self.head == None):
@@ -98,6 +83,15 @@ class LinkedList():
         node2 = node.next
         after.next = node2
 
+    def __str__(self):
+        node = self.head
+        text = ""
+        while node is not None:
+            text += str(node.value)
+            if node.next is not None:
+                text += " -> "
+            node = node.next
+        return text
 
 
 
@@ -110,21 +104,22 @@ class LinkedList():
 # lista.append(5)
 # lista.append(6)
 # lista.append(7)
-# lista.print()
+# print(lista)
 # print("\n0 na poczatku: ")
 # lista.push(0)
-# lista.print()
+# print(lista)
 # print("\nusuniecie ostatniego: ")
 # lista.remove_last()
-# lista.print()
+# print(lista)
 # print("\nusuniecie pierwszego: ")
 # lista.pop()
-# lista.print()
+# print(lista)
 # print("\nusuniecie wezla nr 3: ")
 # lista.remove(after=lista.node(2))
-# lista.print()
+# print(lista)
 # print("\ndlugosc listy: ")
-# print(lista.__len__())
+# print(len(lista))
+
 
 
 
@@ -150,36 +145,35 @@ class Stack():
             licznik += 1
         return licznik + 1
 
-    def print(self):
-        element = self.head
-        data = element.value
-        text = str(data)
-        while (element.next != None):
-            element = element.next
-            data = element.value
-            text += "\n ^ \n" + str(data)
-        print(" ")
-        print(text)
-
     def pop(self) -> Any:
-        current = self.head
         if (self.head == None):
             print("empty")
             return
-        temp = current
-        current2 = current.next
-        self.head = current2
-        return temp
+        current = self.head
+        self.head = current.next
+        return current.value
+
+    def __str__(self):
+        node = self.head
+        text = ""
+        while node is not None:
+            text += str(node.value)
+            if node.next is not None:
+                text += "\n"
+            node = node.next
+        return text
 
 
 # stack = Stack()
 # stack.push(20)
 # stack.push(30)
 # stack.push(40)
-# stack.print()
+# print(stack)
+# print(" ")
 # print(stack.pop())
-# stack.print()
-# print(stack.__len__())
+# print(" ")
+# print(stack)
+# print(len(stack))
 
 
 class Queue():
@@ -205,28 +199,13 @@ class Queue():
             current = current.next
         current.next = new_node
 
-    def print(self):
-        element = self.head
-        if(element == None):
-            print("empty")
-            return
-        data = element.value
-        text = str(data)
-        while (element.next != None):
-            element = element.next
-            data = element.value
-            text += ", " + str(data)
-        print(text)
-
     def dequeue(self) -> Any:
-        current = self.head
         if (self.head == None):
             print("empty")
             return
-        temp = current
-        current2 = current.next
-        self.head = current2
-        return temp
+        current = self.head
+        self.head = current.next
+        return current.value
 
     def __len__(self):
         print(" ")
@@ -239,6 +218,16 @@ class Queue():
             licznik += 1
         return licznik + 1
 
+    def __str__(self):
+        node = self.head
+        text = ""
+        while node is not None:
+            text += str(node.value)
+            if node.next is not None:
+                text += ", "
+            node = node.next
+        return text
+
 
 # queue = Queue()
 # queue.enqueue('klient 1')
@@ -247,10 +236,11 @@ class Queue():
 # queue.enqueue('klient 4')
 # queue.enqueue('klient 5')
 # print("pierwszy w kolejce: " + queue.peek())
-# queue.print()
+# print(queue)
 # queue.dequeue()
-# queue.print()
-# print(queue.__len__())
+# print(queue)
+# print(len(queue))
+
 
 
 
