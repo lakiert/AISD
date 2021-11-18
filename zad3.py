@@ -41,17 +41,49 @@
 # zad3
 
 # def power(number: int, n: int) -> int:
-# 
+#
 #     if (n==0):
 #         return 1
 #     elif (n==1):
 #         return number
 #     else:
 #         return number*(power(number, n-1))
-# 
-# 
+#
+#
 # print(power(10, 3))
 # print(power(2, 3))
+
+
+
+# zad4
+#
+# def reverse(txt: str) -> str:
+#     if len(txt) == 0:
+#         return txt
+#     else:
+#         return reverse(txt[1:]) + txt[0]
+#
+#
+# print("Ala ma kota")
+# print(reverse("Ala ma kota"))
+
+
+
+# zad5
+
+# def factorial(n: int) -> int:
+#     if n == 0:
+#         return 1
+#     else:
+#         return n*factorial(n-1)
+#
+#
+# print(factorial(4))
+# print(factorial(3))
+# print(factorial(2))
+# print(factorial(1))
+# print(factorial(0))
+# print(factorial(7))
 
 
 
