@@ -38,6 +38,23 @@
 
 
 
+# zad3
+
+def power(number: int, n: int):
+
+    if (n==0):
+        return 1
+    if (n==1):
+        return number
+    else:
+        return (power(number, n-1) * power(number, n-2))
+
+
+
+print(power(10, 3))
+print(power(2, 3))
+
+
 
 
 
