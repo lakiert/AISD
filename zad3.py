@@ -87,19 +87,21 @@
 
 
 
+# zad6
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# def prime(n: int, i=2) -> bool:
+#     if n < 2:
+#         return False
+#     if n % i == 0:
+#         return False
+#     if i * i > n:
+#         return True
+#
+#
+#     return prime(n, i + 1)
+#
+#
+# print(prime(7))
+# print(prime(10))
 
 
