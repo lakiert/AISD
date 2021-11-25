@@ -32,13 +32,21 @@ class TreeNode:
             fifo += fifo[0].children
             del fifo[0]
 
-    def printing(self):
-        print(self.value)
+    # def printing(self):
+    #     print(self.value)
+    #
+    # def printing_branch(self):
+    #     print(self.value)
+    #     for x in self.children:
+    #         print(x.value)
 
-    def printing_branch(self):
-        print(self.value)
-        for x in self.children:
-            print(x.value)
+    # def search(self, value:any) -> Union['TreeNode', None]:
+    #     if self.value == value:
+    #         return self
+    #
+    #     for child in self.children:
+    #         x = child.search(value)
+    #         if x =
 
 
 a = TreeNode("A")
