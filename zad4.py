@@ -7,6 +7,7 @@ class TreeNode:
     def __init__(self, value):
         self.value = value
         self.children = []
+        self.parent = None
 
     def is_leaf(self) -> bool:
         if len(self.children) == 0:
@@ -14,6 +15,7 @@ class TreeNode:
         return False
 
     def add(self, child: 'TreeNode') -> None:
+        child.parent = self
         self.children.append(child)
 
     def for_each_deep_first(self, visit: Callable[['TreeNode'], None]) -> None:
@@ -32,13 +34,32 @@ class TreeNode:
             fifo += fifo[0].children
             del fifo[0]
 
-    # def printing(self):
-    #     print(self.value)
-    #
-    # def printing_branch(self):
-    #     print(self.value)
-    #     for x in self.children:
-    #         print(x.value)
+    def get_level(self) -> int:
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
+    def print_tree(self):
+        spaces = ' ' * self.get_level() * 3
+        if self.parent:
+            prefix = '-'
+        else:
+            prefix = ''
+        print(spaces + prefix + self.value)
+        if self.children:
+            for child in self.children:
+                child.print_tree()
+
+    def printing(self):
+        print(self.value)
+
+    def printing_branch(self):
+        print(self.value)
+        for x in self.children:
+            print(x.value)
 
     # def search(self, value:any) -> Union['TreeNode', None]:
     #     if self.value == value:
@@ -49,19 +70,25 @@ class TreeNode:
     #         if x =
 
 
-a = TreeNode("A")
-b = TreeNode("B")
-b2 = TreeNode("B2")
-b3 = TreeNode("B3")
-c = TreeNode("C")
-a.add(b)
-a.add(b2)
-a.add(b3)
-b.add(c)
+food = TreeNode("food")
+fruits = TreeNode("fruits")
+vegetables = TreeNode("vegetables")
+dairy = TreeNode("dairy")
+citrus = TreeNode("citrus")
+food.add(vegetables)
+food.add(fruits)
+food.add(dairy)
+fruits.add(citrus)
 
-# a.printing()
-# a.printing_branch()
-# b.printing_branch()
+# food.printing()
+# print(" ")
+# food.printing_branch()
+# print(" ")
+# fruits.printing_branch()
+# print(" ")
 #
-# print(a.is_leaf())
-# print(c.is_leaf())
+#
+# print(food.is_leaf())
+# print(citrus.is_leaf())
+
+food.print_tree()
