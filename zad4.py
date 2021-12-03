@@ -1,40 +1,54 @@
 from typing import *
 
-class TreeNode:
+
+class BinaryNode:
     value: Any
-    children: List['TreeNode']
+    left_child: 'BinaryNode'
+    right_child: 'BinaryNode'
+    parent: 'BinaryNode'
 
     def __init__(self, value):
         self.value = value
-        self.children = []
+        self.left_child = None
+        self.right_child = None
         self.parent = None
 
-    def __str__(self):
-        return self.value
-
-    def is_leaf(self) -> bool:
-        if len(self.children) == 0:
+    def is_leaf(self):
+        if self.right_child is None and self.left_child is None:
             return True
         return False
 
-    def add(self, child: 'TreeNode') -> None:
-        child.parent = self
-        self.children.append(child)
+    def add_left_child(self, child):
+        self.left_child = child
+        self.left_child.parent = self
 
-    def for_each_deep_first(self) -> None:
-        
-        for child in self.children:
-            type(self).for_each_deep_first(child)
+    def add_right_child(self, child):
+        self.right_child = child
+        self.right_child.parent = self
 
-    def for_each_level_order(self) -> None:
+    def traverse_in_order(self, visit: Callable[[Any], None]):
+        if self.left_child is not None:
+            self.left_child.traverse_in_order(visit)
         visit(self)
+        print(self.value)
+        if self.right_child is not None:
+            self.right_child.traverse_in_order(visit)
 
-        fifo = self.children
-        while len(fifo):
-            visit(fifo[0])
-            print(fifo[0])
-            fifo += fifo[0].children
-            del fifo[0]
+    def traverse_post_order(self, visit: Callable[[Any], None]):
+        if self.left_child is not None:
+            self.left_child.traverse_post_order(visit)
+        if self.right_child is not None:
+            self.right_child.traverse_post_order(visit)
+        visit(self)
+        print(self.value)
+
+    def traverse_pre_order(self, visit: Callable[[Any], None]):
+        visit(self)
+        print(self.value)
+        if self.left_child is not None:
+            self.left_child.traverse_pre_order(visit)
+        if self.right_child is not None:
+            self.right_child.traverse_pre_order(visit)
 
     def get_level(self) -> int:
         level = 0
@@ -44,96 +58,50 @@ class TreeNode:
             p = p.parent
         return level
 
-    def print_tree(self):
-        spaces = ' ' * self.get_level() * 3
-        if self.parent:
-            prefix = '-'
-        else:
-            prefix = ''
-        print(spaces + prefix + self.value)
-        if self.children:
-            for child in self.children:
-                child.print_tree()
-
-    # def search(self, value:any) -> Union['TreeNode', None]:
-    #     if self.value == value:
-    #         return self
-    #
-    #     for child in self.children:
-    #         x = child.search(value)
-    #         if x =
-
-    def printing(self):
-        print(self.value)
-
-    def printing_children(self):
-        print(self.value)
-        for x in self.children:
-            print(x.value)
 
 
 
-class Tree:
-    def __init__(self, root: TreeNode):
+
+
+
+
+
+class BinaryTree:
+    root: BinaryNode
+
+    def __init__(self, root: BinaryNode):
         self.root = root
 
-    def add(self, value:Any, parent:Any):
-        parent.children.append(TreeNode(value))
+    def traverse_in_order(self, visit: Callable[[Any], None]):
+        self.root.traverse_in_order(visit)
 
-    def show(self):
-        spaces = ' '
-        prefix = '-'
+    def traverse_post_order(self, visit: Callable[[Any], None]):
+        self.root.traverse_post_order(visit)
 
-        if type(self) is Tree:
-            print(self.root.value)
-            for child in self.root.children:
-                print(spaces * child.get_level()*3 + prefix + child.value)
-                Tree.show(child)
-        if type(self) is TreeNode:
-            for child in self.children:
-                print(spaces * child.get_level()*3 + prefix + child.value)
-                Tree.show(child)
+    def traverse_pre_order(self, visit: Callable[[Any], None]):
+        self.root.traverse_pre_order(visit)
 
 
-food = TreeNode("food")
-fruits = TreeNode("fruits")
-vegetables = TreeNode("vegetables")
-dairy = TreeNode("dairy")
-citrus = TreeNode("citrus")
-berries = TreeNode("berries")
-leafy = TreeNode("leafy")
-roots = TreeNode("roots")
-milk = TreeNode("milk")
-cheese = TreeNode("cheese")
-cheese_white = TreeNode("cheese_white")
-cheese_yellow = TreeNode("cheese_yellow")
 
-food.add(vegetables)
-food.add(fruits)
-food.add(dairy)
-fruits.add(citrus)
-fruits.add(berries)
-vegetables.add(leafy)
-vegetables.add(roots)
-dairy.add(milk)
-dairy.add(cheese)
-cheese.add(cheese_white)
-cheese.add(cheese_yellow)
+n1 = BinaryNode(1)
+n2 = BinaryNode(2)
+n3 = BinaryNode(3)
+n4 = BinaryNode(4)
+n5 = BinaryNode(5)
+n7 = BinaryNode(7)
+n8 = BinaryNode(8)
+n9 = BinaryNode(9)
 
-# food.printing()
-# print(" ")
-# food.printing_children()
-# print(" ")
-# fruits.printing_children()
-# print(" ")
-#
-# print(food.is_leaf())
-# print(citrus.is_leaf())
-#
-food.print_tree()
-#
-# food.for_each_deep_first()
+n1.add_left_child(n2)
+n1.add_right_child(n3)
+n3.add_right_child(n7)
+n2.add_right_child(n5)
+n2.add_left_child(n4)
+n4.add_right_child(n9)
+n4.add_left_child(n8)
 
-tree = Tree(food)
-tree.show()
+drzewo = BinaryTree(n1)
+
+
+
 
