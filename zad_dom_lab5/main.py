@@ -69,7 +69,7 @@ class BinaryNode:
             p = p.parent
         return level
 
-    
+
 class BinaryTree:
     root: BinaryNode
 
@@ -89,7 +89,7 @@ class BinaryTree:
         return 0
 
 
-def all_paths(tree: BinaryTree):
+def all_paths(tree: BinaryTree) -> List[List[BinaryNode]]:
     root = tree.root
     lista = []
     path = []
@@ -129,10 +129,4 @@ n4.add_left_child(n8)
 
 drzewo = BinaryTree(n1)
 print(all_paths(drzewo))
-
-
-
-
-
-
 
