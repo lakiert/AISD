@@ -1,33 +1,29 @@
 from typing import *
 
-
 class BinaryNode:
     value: Any
     left_child: 'BinaryNode'
     right_child: 'BinaryNode'
+    parent: 'BinaryNode'
 
     def __init__(self, value):
         self.value = value
-        self.left_child = None
-        self.right_child = None
+        self.left_child = BinaryNode
+        self.right_child = BinaryNode
+        self.parent = BinaryNode
 
     def is_leaf(self):
         if self.right_child is None and self.left_child is None:
             return True
         return False
 
-    def add_left_child(self, value: Any):
-        self.left_child = BinaryNode(value)
+    def add_left_child(self, child):
+        self.left_child = child
+        self.left_child.parent = self
 
-    def add_right_child(self, value: Any):
-        self.right_child = BinaryNode(value)
-
-    # def traverse_in_order(self):
-    #     if self.left_child is not None:
-    #         type(self).traverse_in_order(self.left_child)
-    #     print(self.value)
-    #     if self.right_child is not None:
-    #         type(self).traverse_in_order(self.right_child)
+    def add_right_child(self, child):
+        self.right_child = child
+        self.right_child.parent = self
 
     def traverse_in_order(self, visit: Callable[[Any], None]):
         if self.left_child is not None:
@@ -53,12 +49,61 @@ class BinaryNode:
         if self.right_child is not None:
             self.right_child.traverse_pre_order(visit)
 
+    def get_level(self) -> int:
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
+    # def all_paths(self) -> List[List[int]]:
+    #     List = []
+    #     list2 = []
+    #
+    #     if self is None:
+    #         return List
+    #     list2.append(self.value)
+    #     List.append(list2)
+    #     if self.is_leaf():
+    #         return List
+
+
+        # if self.right_child is not None:
+        #     self = self.right_child
+        #     list2.append(self.value)
+        #     List.append(list2)
+
+        # return List
+
+    # def all_paths(self, visit: Callable[[Any], None]) -> List[List[BinaryNode]]:
+    #     list = []
+    #     path = []
+    #
+    #     visit(self)
+    #     print(self.value)
+    #     if self.left_child is not None:
+    #         self.left_child.traverse_pre_order(visit)
+    #     if self.right_child is not None:
+    #         self.right_child.traverse_pre_order(visit)
+
+
+
+
+
+
+
+
+
+
+
+
 
 class BinaryTree:
     root: BinaryNode
 
-    def __init__(self, value):
-        self.root = BinaryNode(value)
+    def __init__(self, root: BinaryNode):
+        self.root = root
 
     def traverse_in_order(self, visit: Callable[[Any], None]):
         self.root.traverse_in_order(visit)
@@ -69,41 +114,33 @@ class BinaryTree:
     def traverse_pre_order(self, visit: Callable[[Any], None]):
         self.root.traverse_pre_order(visit)
 
-    def show(self):
-        pass
+    def get_level(self) -> int:
+        return 0
 
 
-# tree = BinaryTree(10)
-# tree.root.add_right_child(2)
-# tree.root.add_left_child(5)
-# tree.root.left_child.add_left_child(1)
-# assert tree.root.value == 10
-#
-# assert tree.root.right_child.value == 2
-# tree.root.right_child.add_left_child(10)
-# assert tree.root.right_child.is_leaf() is False
-#
-# assert tree.root.left_child.left_child.value == 1
-# assert tree.root.left_child.left_child.is_leaf() is True
 
 
-n10 = BinaryNode(10)
-n9 = BinaryNode(9)
-n2 = BinaryNode(2)
 n1 = BinaryNode(1)
+n2 = BinaryNode(2)
 n3 = BinaryNode(3)
 n4 = BinaryNode(4)
-n6 = BinaryNode(6)
+n5 = BinaryNode(5)
+n7 = BinaryNode(7)
+n8 = BinaryNode(8)
+n9 = BinaryNode(9)
 
-n10.left_child = n9
-n10.right_child = n2
-n9.left_child = n1
-n9.right_child = n3
-n2.left_child = n4
-n2.right_child = n6
+n1.add_left_child(n2)
+n1.add_right_child(n3)
+n3.add_right_child(n7)
+n2.add_right_child(n5)
+n2.add_left_child(n4)
+n4.add_right_child(n9)
+n4.add_left_child(n8)
 
-n10.traverse_in_order(BinaryNode)
-print(" ")
-n10.traverse_post_order(BinaryNode)
-print(" ")
-n10.traverse_pre_order(BinaryNode)
+drzewo = BinaryTree(n1)
+# print(n1.all_paths(self=n1))
+
+
+
+
+
