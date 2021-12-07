@@ -69,42 +69,7 @@ class BinaryNode:
             p = p.parent
         return level
 
-
-
-    # def all_paths(self) -> List[List[int]]:
-    #     List = []
-    #     list2 = []
-    #
-    #     if self is None:
-    #         return List
-    #     list2.append(self.value)
-    #     List.append(list2)
-    #     if self.is_leaf():
-    #         return List
-
-
-        # if self.right_child is not None:
-        #     self = self.right_child
-        #     list2.append(self.value)
-        #     List.append(list2)
-
-        # return List
-
-    # def all_paths(self, visit: Callable[[Any], None]) -> List[List[BinaryNode]]:
-    #     list = []
-    #     path = []
-    #
-    #     visit(self)
-    #     print(self.value)
-    #     if self.left_child is not None:
-    #         self.left_child.traverse_pre_order(visit)
-    #     if self.right_child is not None:
-    #         self.right_child.traverse_pre_order(visit)
-
-
-
-
-
+    
 class BinaryTree:
     root: BinaryNode
 
