@@ -1,0 +1,35 @@
+from typing import *
+
+class BinaryNode:
+    value: Any
+    left_child: 'BinaryNode'
+    right_child: 'BinaryNode'
+
+    def __init__(self, value):
+        self.value = value
+        self.left_child = None
+        self.right_child = None
+
+    def traverse_in_order(self, visit: Callable[[Any], None]):
+        if self.left_child is not None:
+            self.left_child.traverse_in_order(visit)
+        visit(self)
+        print(self.value)
+        if self.right_child is not None:
+            self.right_child.traverse_in_order(visit)
+
+    # def min(self) -> BinaryNode:
+
+
+
+
+class BinarySearchTree:
+    root: BinaryNode
+
+
+def insert(self, node:BinaryNode, value:Any) -> BinaryNode:
+    if value < node.value:
+        node.left_child = insert(node.left_child, value)
+    if value > node.value:
+        node.right_child = insert(node.right_child, value)
+    return node
