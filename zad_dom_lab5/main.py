@@ -79,9 +79,6 @@ class BinaryTree:
     def traverse_pre_order(self, visit: Callable[[Any], None]):
         self.root.traverse_pre_order(visit)
 
-    def get_level(self) -> int:
-        return 0
-
 
 def all_paths(tree: BinaryTree) -> List[List[BinaryNode]]:
     root = tree.root
