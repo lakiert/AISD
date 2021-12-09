@@ -2,15 +2,12 @@ from typing import *
 from collections import deque
 
 
-class BinaryNode(object):
-    pass
-
 
 class BinaryNode:
     value: Any
-    left_child: None
-    right_child: None
-    parent: None
+    left_child: 'BinaryNode'
+    right_child: 'BinaryNode'
+    parent: 'BinaryNode'
 
     def __init__(self, value):
         self.value = value
@@ -33,9 +30,6 @@ class BinaryNode:
     def add_right_child(self, child):
         self.right_child = child
         self.right_child.parent = self
-
-    def visit(node: BinaryNode):
-        print(node.value)
 
     def traverse_in_order(self, visit: Callable[[Any], None]):
         if self.left_child is not None:
