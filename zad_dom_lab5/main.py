@@ -2,7 +2,6 @@ from typing import *
 from collections import deque
 
 
-
 class BinaryNode:
     value: Any
     left_child: 'BinaryNode'
@@ -120,4 +119,3 @@ n4.add_left_child(n8)
 
 drzewo = BinaryTree(n1)
 print(all_paths(drzewo))
-
