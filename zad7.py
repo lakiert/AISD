@@ -3,6 +3,7 @@ from enum import *
 from typing import *
 import networkx as nx
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 class EdgeType(Enum):
@@ -32,15 +33,19 @@ class Edge:
 
 class Graph:
     adjacencies: Dict[Vertex, List[Edge]]
+    list_from = []
+    list_to = []
 
     def __init__(self):
         self.adjacencies = {}
+        self.list_from = []
+        self.list_to = []
 
     def __str__(self):
         result = ""
         list1 = self.adjacencies.items()
         for key, value in list1:
-            result += f'- {key.data}: v{key.data} ----> [{value}] \n'
+            result += f'- {key.data}: {key.data} ----> [] \n'
         return result
 
     def create_vertex(self, value):
@@ -50,6 +55,8 @@ class Graph:
     def add_directed_edge(self, source: Vertex, destination: Vertex, weight: Optional[float]):
         edge = Edge(source, destination, weight)
         self.adjacencies[source].append(edge)
+        self.list_from.append(source.data)
+        self.list_to.append(destination.data)
 
     def add_undirected_edge(self, source: Vertex, destination: Vertex, weight: Optional[float]):
         edge = Edge(source, destination, weight)
@@ -89,6 +96,13 @@ class Graph:
         visited = []
         self.dfs(vertices[0], visited, visit)
 
+    def show(self):
+        relationships = pd.DataFrame({'from': [x for x in self.list_from],
+                                      'to': [y for y in self.list_to]})
+        g = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.DiGraph())
+        nx.draw(g, with_labels=True, arrows=True)
+        plt.savefig("graf.png")
+
 
 def visit(vertex: Any) -> None:
     print(vertex.data)
@@ -119,3 +133,7 @@ graf1.add_directed_edge(vertex[4], vertex[5], None)
 graf1.traverse_breadth_first(visit)
 print(" ")
 graf1.traverse_depth_first(visit)
+print(" ")
+graf1.show()
+
+
