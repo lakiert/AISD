@@ -102,6 +102,7 @@ class Graph:
         g = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.DiGraph())
         nx.draw(g, with_labels=True, arrows=True)
         plt.savefig("graf.png")
+        plt.show()
 
 
 def visit(vertex: Any) -> None:
