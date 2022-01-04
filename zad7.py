@@ -1,8 +1,8 @@
+from Queue1 import Queue
 from enum import *
 from typing import *
 import networkx as nx
 import matplotlib.pyplot as plt
-
 
 
 class EdgeType(Enum):
@@ -63,34 +63,59 @@ class Graph:
         else:
             self.add_undirected_edge(source, destination, weight)
 
-    # def show(self):
-    #
-    #     values = self.adjacencies.values()
-    #     values_list = list(values)
-    #
-    #     g = nx.Graph()
-    #     nx.draw(g, with_labels=True)
-    #     plt.savefig("filename.png")
+    def traverse_breadth_first(self, visit: Callable[[Any], None]):
+        queue = Queue()
+        vertices = list(graf1.adjacencies.keys())
+        visited = [vertices[0]]
+        queue.enqueue(vertices[0])
+        while len(queue):
+            v = queue.dequeue()
+            visit(v)
+            visited.append(v)
+            for neighbour in self.adjacencies[v]:
+                if neighbour.destination not in visited:
+                    visited.append(neighbour.destination)
+                    queue.enqueue(neighbour.destination)
+
+    def dfs(self, v: Vertex, visited: List[Vertex], visit: Callable[[Any], None]):
+        visit(v)
+        visited.append(v)
+        for neighbour in self.adjacencies[v]:
+            if neighbour.destination not in visited:
+                self.dfs(neighbour.destination, visited, visit)
+
+    def traverse_depth_first(self, visit: Callable[[Any], None]):
+        vertices = list(graf1.adjacencies.keys())
+        visited = []
+        self.dfs(vertices[0], visited, visit)
+
+
+def visit(vertex: Any) -> None:
+    print(vertex.data)
 
 
 graf1 = Graph()
 
-graf1.create_vertex(0)
-graf1.create_vertex(1)
-graf1.create_vertex(2)
-graf1.create_vertex(3)
-graf1.create_vertex(4)
-graf1.create_vertex(5)
+graf1.create_vertex("v0")
+graf1.create_vertex("v1")
+graf1.create_vertex("v2")
+graf1.create_vertex("v3")
+graf1.create_vertex("v4")
+graf1.create_vertex("v5")
 
-klucze = graf1.adjacencies.keys()
-klucze_x = [x for x in klucze]
+vertex = list(graf1.adjacencies.keys())
 
-graf1.add(EdgeType(1), klucze_x[0], klucze_x[1])
-graf1.add(EdgeType(1), klucze_x[0], klucze_x[5])
-graf1.add(EdgeType(1), klucze_x[2], klucze_x[1])
-graf1.add(EdgeType(1), klucze_x[4], klucze_x[1])
-graf1.add(EdgeType(1), klucze_x[5], klucze_x[1])
-graf1.add(EdgeType(1), klucze_x[5], klucze_x[2])
-graf1.add(EdgeType(1), klucze_x[2], klucze_x[3])
-graf1.add(EdgeType(1), klucze_x[3], klucze_x[4])
-graf1.add(EdgeType(1), klucze_x[4], klucze_x[5])
+graf1.add_directed_edge(vertex[0], vertex[1], None)
+graf1.add_directed_edge(vertex[0], vertex[5], None)
+graf1.add_directed_edge(vertex[2], vertex[1], None)
+graf1.add_directed_edge(vertex[4], vertex[1], None)
+graf1.add_directed_edge(vertex[5], vertex[1], None)
+graf1.add_directed_edge(vertex[5], vertex[2], None)
+graf1.add_directed_edge(vertex[2], vertex[3], None)
+graf1.add_directed_edge(vertex[3], vertex[4], None)
+graf1.add_directed_edge(vertex[4], vertex[5], None)
+
+
+graf1.traverse_breadth_first(visit)
+print(" ")
+graf1.traverse_depth_first(visit)
