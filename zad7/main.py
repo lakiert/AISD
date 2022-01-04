@@ -99,7 +99,7 @@ class Graph:
     def show(self):
         relationships = pd.DataFrame({'from': [x for x in self.list_from],
                                       'to': [y for y in self.list_to]})
-        g = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.Graph())
+        g = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.DiGraph())
         nx.draw(g, with_labels=True, arrows=True)
         plt.savefig("graf.png")
 
