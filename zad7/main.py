@@ -40,7 +40,7 @@ class Graph:
         result = ""
         list1 = self.adjacencies.items()
         for key, value in list1:
-            result += f'- {key.data}: v{key.data} ----> [{value}] \n'
+            result += f'- {key.data}: {key.data} ----> [] \n'
         return result
 
     def create_vertex(self, value):
@@ -116,6 +116,8 @@ graf1.add_directed_edge(vertex[3], vertex[4], None)
 graf1.add_directed_edge(vertex[4], vertex[5], None)
 
 
-graf1.traverse_breadth_first(visit)
+# graf1.traverse_breadth_first(visit)
+# print(" ")
+# graf1.traverse_depth_first(visit)
 print(" ")
-graf1.traverse_depth_first(visit)
+print(graf1)
