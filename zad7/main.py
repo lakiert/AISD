@@ -3,6 +3,7 @@ from enum import *
 from typing import *
 import networkx as nx
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 class EdgeType(Enum):
@@ -32,9 +33,13 @@ class Edge:
 
 class Graph:
     adjacencies: Dict[Vertex, List[Edge]]
+    list_from = []
+    list_to = []
 
     def __init__(self):
         self.adjacencies = {}
+        self.list_from = []
+        self.list_to = []
 
     def __str__(self):
         result = ""
@@ -50,6 +55,8 @@ class Graph:
     def add_directed_edge(self, source: Vertex, destination: Vertex, weight: Optional[float]):
         edge = Edge(source, destination, weight)
         self.adjacencies[source].append(edge)
+        self.list_from.append(source.data)
+        self.list_to.append(destination.data)
 
     def add_undirected_edge(self, source: Vertex, destination: Vertex, weight: Optional[float]):
         edge = Edge(source, destination, weight)
@@ -89,6 +96,13 @@ class Graph:
         visited = []
         self.dfs(vertices[0], visited, visit)
 
+    def show(self):
+        relationships = pd.DataFrame({'from': [x for x in self.list_from],
+                                      'to': [y for y in self.list_to]})
+        g = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.Graph())
+        nx.draw(g, with_labels=True, arrows=True)
+        plt.savefig("graf.png")
+
 
 def visit(vertex: Any) -> None:
     print(vertex.data)
@@ -116,8 +130,10 @@ graf1.add_directed_edge(vertex[3], vertex[4], None)
 graf1.add_directed_edge(vertex[4], vertex[5], None)
 
 
-# graf1.traverse_breadth_first(visit)
-# print(" ")
-# graf1.traverse_depth_first(visit)
+graf1.traverse_breadth_first(visit)
 print(" ")
-print(graf1)
+graf1.traverse_depth_first(visit)
+print(" ")
+graf1.show()
+
+
