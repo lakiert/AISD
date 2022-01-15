@@ -21,7 +21,7 @@ def selection_ascending(l):
         for j in range(i+1, len(l)):
             if l[j] < l[min_index]:
                 min_index = j
-            l[i], l[min_index] = l[min_index], l[i]
+        l[i], l[min_index] = l[min_index], l[i]
 
 
 def selection_descending(l):
@@ -30,7 +30,7 @@ def selection_descending(l):
         for j in range(i+1, len(l)):
             if l[j] > l[min_index]:
                 min_index = j
-            l[i], l[min_index] = l[min_index], l[i]
+        l[i], l[min_index] = l[min_index], l[i]
 
 
 def insertion_ascending(l):
@@ -80,4 +80,3 @@ insertion_ascending(list1)
 print(list1)
 insertion_descending(list1)
 print(list1)
-
