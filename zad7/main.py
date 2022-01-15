@@ -92,7 +92,7 @@ class Graph:
                 self.dfs(neighbour.destination, visited, visit)
 
     def traverse_depth_first(self, visit: Callable[[Any], None]):
-        vertices = list(graf1.adjacencies.keys())
+        vertices = list(self.adjacencies.keys())
         visited = []
         self.dfs(vertices[0], visited, visit)
 
