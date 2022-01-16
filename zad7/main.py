@@ -72,7 +72,7 @@ class Graph:
 
     def traverse_breadth_first(self, visit: Callable[[Any], None]):
         queue = Queue()
-        vertices = list(graf1.adjacencies.keys())
+        vertices = list(self.adjacencies.keys())
         visited = [vertices[0]]
         queue.enqueue(vertices[0])
         while len(queue):
