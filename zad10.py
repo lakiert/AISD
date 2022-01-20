@@ -21,4 +21,6 @@ def binary_search(numbers: Array, value: int) -> Tuple[bool, int]:
 ints = array('I', [1, 5, 6, 7, 10, 26, 29, 40])
 
 result = binary_search(ints, 40)
+result = binary_search(ints, 10)
+
 print(result)
